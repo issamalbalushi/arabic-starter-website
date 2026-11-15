@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#173b59">
+  <meta name="description" content="قالب موقع عربي تعريفي بسيط وحديث، متجاوب مع الهواتف وسهل التخصيص.">
+  <title>مشروعك | حضور رقمي يبدأ من هنا</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap');
+    :root {
+      --navy: #173b59; --deep: #102e48; --blue: #3c718f; --sand: #e7dac6;
+      --cream: #f9f7f3; --ink: #203349; --muted: #6a7984; --white: #fff;
+      --border: #e8edf0; --shadow: 0 20px 60px rgba(18,46,72,.09);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 92px; }
+    body { margin: 0; font-family: 'Cairo', Tahoma, sans-serif; color: var(--ink); background: #fff; line-height: 1.9; }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; cursor: pointer; }
+    .container { width: min(1150px, calc(100% - 44px)); margin-inline: auto; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 9px; color: var(--blue); font-size: 13px; font-weight: 800; letter-spacing: .2px; }
+    .eyebrow::before { content: ""; width: 19px; height: 3px; border-radius: 10px; background: #bd9f74; }
+    h1,h2,h3,p { margin-top: 0; }
+    h1 { font-size: clamp(38px, 5.1vw, 70px); line-height: 1.48; letter-spacing: -1.8px; font-weight: 800; margin: 16px 0 22px; }
+    h2 { font-size: clamp(29px, 3vw, 40px); line-height: 1.6; letter-spacing: -.7px; margin: 12px 0 12px; }
+    p { color: var(--muted); }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 14px; min-height: 52px; border-radius: 12px; padding: 11px 25px; font-weight: 800; font-size: 14px; transition: transform .2s, background .2s, box-shadow .2s; }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary { color: white; background: var(--navy); box-shadow: 0 8px 22px rgba(23,59,89,.19); }
+    .btn-primary:hover { background: var(--deep); }
+    .btn-outline { border: 1px solid #cfdce4; background: white; color: var(--navy); }
+    .btn-light { color: var(--navy); background: white; }
+    :focus-visible { outline: 3px solid #b99868; outline-offset: 4px; }
+    header { position: sticky; top: 0; z-index: 40; background: rgba(255,255,255,.94); backdrop-filter: blur(15px); border-bottom: 1px solid rgba(24,61,87,.07); }
+    .nav { display: flex; align-items: center; justify-content: space-between; min-height: 83px; gap: 28px; }
+    .brand { display: flex; gap: 11px; align-items: center; color: var(--navy); font-size: 22px; font-weight: 800; white-space: nowrap; }
+    .brandmark { display: grid; place-items: center; width: 41px; height: 41px; border-radius: 12px; background: var(--navy); color: white; font-size: 25px; line-height: 1; }
+    .navlinks { display: flex; align-items: center; gap: clamp(12px, 2.6vw, 35px); list-style: none; padding: 0; margin: 0; }
+    .navlinks a { font-weight: 700; font-size: 13px; color: #566a79; transition: color .2s; }
+    .navlinks a:hover { color: var(--navy); }
+    .menu-button { display:none; border: 1px solid var(--border); background:white; color:var(--navy); border-radius: 10px; width:44px; height:44px; font-size:22px; align-items:center; justify-content:center; }
+    .hero { min-height: 630px; padding: 77px 0 102px; background: linear-gradient(125deg,#fff 13%,#f7f9fa 66%,#f7f1e7 100%); position: relative; overflow: hidden; }
+    .hero::before { content:""; position:absolute; top:-235px; left:-140px; width:590px; height:590px; border:1px solid rgba(23,59,89,.08); border-radius:50%; box-shadow: 0 0 0 58px rgba(23,59,89,.015), 0 0 0 115px rgba(23,59,89,.012); pointer-events:none; }
+    .hero-grid { display: grid; grid-template-columns: 1.05fr 1fr; align-items: center; gap: 55px; position:relative; }
+    .hero-copy p { font-size: 16px; line-height:2.25; max-width: 500px; margin-bottom: 30px; }
+    .hero-highlight { color: var(--blue); position:relative; }
+    .hero-actions { display:flex; flex-wrap:wrap; gap: 12px; }
+    .hero-note { display:flex; gap:10px; align-items:center; margin-top:34px; font-size:12px; font-weight:700; color:#6c7b86; }
+    .hero-note .tick { color: #3b8968; background: #e5f3eb; width:26px; height:26px; border-radius:50%; display:grid; place-items:center; }
+    .visual { min-height: 420px; position: relative; display: flex; align-items: center; justify-content: center; }
+    .visual-glow { width: 350px; height:350px; position:absolute; border-radius:50%; background: radial-gradient(circle, #e9ddcb 0%, rgba(233,221,203,0) 70%); filter:blur(5px); }
+    .dashboard { position:relative; width:min(100%,465px); background:white; box-shadow:0 31px 90px rgba(21,59,88,.17); border:1px solid #eef1f2; border-radius:23px; padding:20px; transform:rotate(-3deg); }
+    .dash-top { display:flex; justify-content:space-between; align-items:center; padding-bottom:17px; border-bottom:1px solid #edf0f2; }
+    .dots { display:flex; gap:5px; } .dots i { display:block; width:7px; height:7px; border-radius:50%; background:#d5dce0; }
+    .dash-word { color:#8a98a2; font-size:12px; font-weight:800; letter-spacing:1px; }
+    .dash-body { display:grid; grid-template-columns:1fr 1fr; gap:12px; padding-top:18px; }
+    .mini-card { border-radius:13px; background:#f4f7f9; padding:20px 18px; min-height:116px; }
+    .mini-card .small { color:#6d7e89; font-size:12px; font-weight:700; margin-bottom:11px; }
+    .mini-card strong { color:var(--navy); font-size:31px; line-height:1.3; }
+    .mini-card.dark { background:var(--navy); } .mini-card.dark .small,.mini-card.dark strong { color:white; }
+    .mini-card.dark strong { font-size:25px; }
+    .dash-chart { grid-column:1/-1; padding:16px 20px 15px; border:1px solid #eef1f2; border-radius:13px; }
+    .chart-title { font-size:12px; color:#536b7a; font-weight:800; }
+    .bars { height:100px; display:flex; align-items:end; justify-content:space-between; gap:10px; padding:12px 7px 0; }
+    .bars span { display:block; width:12%; border-radius:6px 6px 0 0; background:#c3d4df; }
+    .bars span:nth-child(3n) { background:#bfa17a; } .bars span:nth-child(5) { background:#2f6380; }
+    .float-tag { position:absolute; left:-18px; bottom:35px; background:white; border:1px solid #edf0f2; box-shadow:0 14px 34px rgba(15,56,81,.14); border-radius:14px; padding:15px 17px; font-weight:800; font-size:12px; color:#254d65; display:flex; align-items:center; gap:12px; transform:rotate(3deg); }
+    .float-tag b { display:grid; place-items:center; width:30px; height:30px; background:#e8f5ed; color:#2c8f62; border-radius:9px; font-size:17px; }
+    section { padding: 100px 0; }
+    .section-head { max-width: 590px; margin-bottom:42px; }
+    .section-head p { font-size:15px; line-height:2.1; }
+    .services { background:white; }
+    .cards { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:20px; }
+    .service-card { border:1px solid var(--border); border-radius:18px; padding:35px 29px 30px; background:#fff; transition: transform .25s, box-shadow .25s,border-color .25s; }
+    .service-card:hover { transform:translateY(-5px); box-shadow:var(--shadow); border-color:#d6e4eb; }
+    .service-icon { width:60px; height:60px; display:grid; place-items:center; border-radius:15px; background:#f0f4f6; color:var(--navy); margin-bottom:25px; }
+    .service-icon svg { width:28px; height:28px; stroke:currentColor; fill:none; stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round; }
+    .service-card h3 { font-size:20px; color:var(--navy); margin-bottom:12px; }
+    .service-card p { font-size:13px; line-height:2.2; margin:0; }
+    .about { background:var(--cream); }
+    .about-grid { display:grid; grid-template-columns:1fr 1fr; gap:75px; align-items:center; }
+    .about-art { min-height:370px; border-radius:25px; position:relative; overflow:hidden; background:var(--navy); display:grid; place-items:center; }
+    .about-art::before,.about-art::after { content:""; position:absolute; border:1px solid rgba(255,255,255,.18); border-radius:50%; width:410px; height:410px; }
+    .about-art::before { top:-145px; right:-150px; } .about-art::after { bottom:-210px; left:-80px; width:500px; height:500px; }
+    .art-logo { position:relative; z-index:1; width:145px; height:145px; border:1px solid rgba(255,255,255,.35); border-radius:30px; transform:rotate(-12deg); display:grid; place-items:center; background:rgba(255,255,255,.065); box-shadow:0 16px 50px rgba(0,0,0,.08); }
+    .art-logo > span { color:white; font-size:70px; font-weight:800; transform:rotate(12deg); }
+    .art-caption { position:absolute; bottom:25px; right:27px; color:#dbe6ed; font-size:12px; font-weight:700; }
+    .about-copy p { font-size:15px; line-height:2.3; }
+    .checks { padding:0; margin:25px 0 0; list-style:none; display:grid; gap:12px; }
+    .checks li { font-size:14px; font-weight:800; color:#35536a; }
+    .checks li::before { content:"✓"; margin-left:13px; color:#2a9570; }
+    .steps { background:white; }
+    .steps-list { display:grid; grid-template-columns:repeat(3,1fr); gap:21px; margin-top:38px; }
+    .step { border-top:2px solid #d8e5ec; padding-top:26px; }
+    .step-num { display:inline-grid; place-items:center; width:44px; height:44px; background:#eaf1f5; color:var(--navy); border-radius:13px; font-weight:800; font-size:16px; margin-bottom:13px; }
+    .step h3 { margin-bottom:7px; color:var(--navy); font-size:18px; }
+    .step p { font-size:13px; max-width:270px; margin:0; }
+    .faq { background:#f7f9fa; }
+    .faq-grid { display:grid; grid-template-columns:.75fr 1.25fr; gap:55px; }
+    .faq details { background:white; border:1px solid var(--border); border-radius:13px; margin-bottom:13px; padding:18px 21px; }
+    .faq summary { color:var(--navy); cursor:pointer; list-style:none; font-weight:800; font-size:14px; display:flex; justify-content:space-between; align-items:center; gap:12px; }
+    .faq summary::-webkit-details-marker { display:none; }
+    .faq summary::after { content:"+"; font-size:23px; line-height:1; color:#a88a67; }
+    .faq details[open] summary::after { content:"−"; }
+    .faq details p { font-size:13px; margin:11px 0 0; }
+    .contact { padding: 85px 0; }
+    .cta { background:var(--navy); color:white; border-radius:27px; padding:52px 62px; display:flex; justify-content:space-between; align-items:center; gap:24px; position:relative; overflow:hidden; }
+    .cta::before { content:""; position:absolute; width:350px; height:350px; border:1px solid rgba(255,255,255,.12); border-radius:50%; top:-250px; left:10%; }
+    .cta h2 { color:white; margin-bottom:8px; font-size:clamp(25px,3vw,37px); position:relative; }
+    .cta p { color:#d1dde7; margin:0; font-size:14px; position:relative; }
+    .cta .btn { z-index:1; white-space:nowrap; }
+    footer { border-top:1px solid var(--border); padding:27px 0; background:#fff; }
+    .footer-inner { display:flex; align-items:center; justify-content:space-between; gap:20px; color:#738391; font-size:12px; font-weight:700; }
+    .footer-inner a { color:var(--navy); }
+    @media (max-width:950px) {
+      .hero-grid { gap:22px; } .dashboard {transform:rotate(-2deg) scale(.94);}
+      .about-grid {gap:40px;} .navlinks {gap:16px;}
+      .nav-cta {display:none;}
+    }
+    @media (max-width:730px) {
+      .container {width:min(100% - 32px, 510px);} .nav {min-height:72px;}
+      .menu-button {display:flex;}
+      .navlinks {position:absolute; top:72px; right:0; left:0; background:white; box-shadow:0 18px 24px rgba(18,46,72,.09); border-bottom:1px solid var(--border); padding:13px 22px 20px; flex-direction:column; align-items:stretch; gap:3px; display:none;}
+      .navlinks.open {display:flex;} .navlinks a {display:block; padding:10px 0;}
+      .hero {padding:50px 0 65px;} .hero-grid,.about-grid,.faq-grid {grid-template-columns:1fr; gap:35px;}
+      h1 {font-size:38px; letter-spacing:-1px;} section {padding:69px 0;}
+      .hero-copy p {font-size:14px;} .visual {min-height:320px;}.dashboard {width:87%; transform:rotate(-2deg) scale(.94);} .float-tag {left:-18px; bottom:10px;}
+      .cards,.steps-list {grid-template-columns:1fr;} .service-card {padding:26px;}
+      .about-art {min-height:275px;} .cta {padding:37px 27px; flex-direction:column; align-items:stretch;} .cta .btn{align-self:flex-start;}
+      .footer-inner {flex-direction:column;text-align:center;gap:7px;}
+    }
+    @media (prefers-reduced-motion:reduce) {html{scroll-behavior:auto;}*,*::before,*::after{transition:none!important;animation:none!important;}}
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="nav container" aria-label="التنقل الرئيسي">
+      <a href="#home" class="brand" aria-label="مشروعك - الصفحة الرئيسية">
+        <span class="brandmark" aria-hidden="true">م</span>
+        <span>مشروعك<span style="color:#b99972">.</span></span>
+      </a>
+      <button id="menuButton" class="menu-button" aria-label="فتح القائمة" aria-expanded="false" aria-controls="navLinks">☰</button>
+      <ul id="navLinks" class="navlinks">
+        <li><a href="#home">الرئيسية</a></li>
+        <li><a href="#services">خدماتنا</a></li>
+        <li><a href="#about">من نحن</a></li>
+        <li><a href="#steps">كيف نعمل</a></li>
+        <li><a href="#faq">الأسئلة الشائعة</a></li>
+      </ul>
+      <a class="btn btn-primary nav-cta" href="#contact">تواصل معنا <span aria-hidden="true">←</span></a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow">موقع تعريفي عصري وسهل التعديل</span>
+          <h1>فكرتك تستحق<br><span class="hero-highlight">حضورًا يليق بها.</span></h1>
+          <p>نموذج موقع عربي بسيط وأنيق، يجمع بين التصميم الواضح والتجربة السلسة. نقطة انطلاق مثالية لتقديم مشروعك وخدماتك بصورة احترافية.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#services">اكتشف خدماتنا <span aria-hidden="true">←</span></a>
+            <a class="btn btn-outline" href="#about">تعرف علينا</a>
+          </div>
+          <div class="hero-note"><span class="tick" aria-hidden="true">✓</span> تصميم متجاوب • لغة عربية • قابل للتخصيص</div>
+        </div>
+        <div class="visual" aria-label="رسم توضيحي لواجهة لوحة معلومات">
+          <div class="visual-glow" aria-hidden="true"></div>
+          <div class="dashboard" aria-hidden="true">
+            <div class="dash-top"><span class="dash-word">YOUR PROJECT</span><div class="dots"><i></i><i></i><i></i></div></div>
+            <div class="dash-body">
+              <div class="mini-card dark"><div class="small">رؤية واضحة</div><strong>مستقبل أفضل</strong></div>
+              <div class="mini-card"><div class="small">جودة التصميم</div><strong>100%</strong></div>
+              <div class="dash-chart"><div class="chart-title">مسار النمو والتطوير</div>
+                <div class="bars"><span style="height:32%"></span><span style="height:49%"></span><span style="height:38%"></span><span style="height:65%"></span><span style="height:57%"></span><span style="height:77%"></span><span style="height:67%"></span><span style="height:88%"></span></div>
+              </div>
+            </div>
+          </div>
+          <div class="float-tag" aria-hidden="true"><b>✓</b> تجربة رقمية أبسط وأجمل</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services" class="services">
+      <div class="container">
+        <div class="section-head"><span class="eyebrow">ما الذي نقدمه؟</span><h2>خدمات تصنع الفرق</h2><p>يمكنك تغيير هذه البطاقات لتعكس خدمات مؤسستك أو مشروعك، مع الحفاظ على واجهة مرتبة وسهلة القراءة.</p></div>
+        <div class="cards">
+          <article class="service-card"><div class="service-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M3 9h18M8 4v16"/></svg></div><h3>حلول مبتكرة</h3><p>نحوّل الأفكار إلى تجارب واضحة وعملية تلبي الاحتياجات وتساعد على تحقيق الأهداف.</p></article>
+          <article class="service-card"><div class="service-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m4 17 5-5 4 3 7-8M15 7h5v5"/><path d="M4 21h16"/></svg></div><h3>تطوير مستمر</h3><p>نركز على الجودة والتحسين المتواصل لنمنح عملاءنا قيمة أكبر في كل مرحلة.</p></article>
+          <article class="service-card"><div class="service-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M5 20c0-4 3-6 7-6s7 2 7 6"/><path d="M4 8H2m20 0h-2"/></svg></div><h3>شراكات ناجحة</h3><p>نبني علاقات مهنية قائمة على الثقة والوضوح، ونسعى مع شركائنا إلى نتائج ملموسة.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="about">
+      <div class="container about-grid">
+        <div class="about-art" aria-label="رسم تجريدي بألوان الهوية"><div class="art-logo"><span>م</span></div><div class="art-caption">تصميم بسيط. أثر كبير.</div></div>
+        <div class="about-copy"><span class="eyebrow">من نحن</span><h2>نؤمن أن التفاصيل<br>تصنع تجربة أفضل</h2><p>هذه مساحة مخصصة لتقديم نبذة عن مشروعك أو مؤسستك. اكتب هنا قصتك، رؤيتك، وما الذي يميزك. استخدم لغة بسيطة تعكس شخصيتك المهنية وتترك انطباعًا واضحًا لدى الزائر.</p>
+          <ul class="checks"><li>واجهة سهلة وواضحة للزوار</li><li>تصميم مناسب لمختلف الشاشات</li><li>محتوى يمكنك تحديثه متى أردت</li></ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="steps" class="steps">
+      <div class="container"><div class="section-head"><span class="eyebrow">رحلتنا معك</span><h2>ثلاث خطوات نحو الأفضل</h2><p>نُبسّط الرحلة منذ البداية حتى الوصول إلى النتيجة التي تطمح إليها.</p></div>
+        <div class="steps-list">
+          <article class="step"><span class="step-num">01</span><h3>نستمع ونفهم</h3><p>نبدأ بفهم احتياجاتك وأهدافك لتتضح الصورة كاملة.</p></article>
+          <article class="step"><span class="step-num">02</span><h3>نخطط وننفذ</h3><p>نختار الحلول المناسبة ونحول التصور إلى خطوات عملية.</p></article>
+          <article class="step"><span class="step-num">03</span><h3>نطوّر وننجح</h3><p>نراجع النتائج ونواصل التحسين لتحقيق أثر مستدام.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" class="faq">
+      <div class="container faq-grid">
+        <div><span class="eyebrow">أسئلة متكررة</span><h2>إجابات سريعة<br>وواضحة</h2><p>يمكنك استبدال الأسئلة التالية بأكثر ما يسأله عملاؤك أو زوار موقعك.</p></div>
+        <div>
+          <details><summary>هل الموقع مناسب للهواتف؟</summary><p>نعم، يتكيف الموقع تلقائيًا مع الهاتف والجهاز اللوحي وشاشة الكمبيوتر.</p></details>
+          <details><summary>هل يمكن تغيير النصوص والألوان؟</summary><p>نعم، جميع الأقسام والألوان قابلة للتعديل داخل ملف index.html.</p></details>
+          <details><summary>هل يحتاج الموقع إلى اشتراك لاستضافته؟</summary><p>يمكنك نشر هذا الموقع الثابت باستخدام GitHub Pages دون خادم خاص، مع مراعاة إعدادات المستودع وشروط الخدمة.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <div class="container"><div class="cta"><div><span class="eyebrow" style="color:#e4d1b6">ابدأ من هنا</span><h2>مستعد لتقديم مشروعك للعالم؟</h2><p>خصّص اسم الموقع والنصوص والخدمات، ثم انشره على GitHub Pages.</p></div><a href="#home" class="btn btn-light">العودة للبداية <span aria-hidden="true">↑</span></a></div></div>
+    </section>
+  </main>
+
+  <footer><div class="container footer-inner"><span>© <span id="year">2026</span> مشروعك. جميع الحقوق محفوظة.</span><span>نموذج تعريفي جاهز للتعديل والنشر</span><a href="#home">العودة لأعلى ↑</a></div></footer>
+
+  <script>
+    const menuButton = document.getElementById('menuButton');
+    const navLinks = document.getElementById('navLinks');
+    menuButton.addEventListener('click', () => {
+      const open = navLinks.classList.toggle('open');
+      menuButton.setAttribute('aria-expanded', String(open));
+      menuButton.setAttribute('aria-label', open ? 'إغلاق القائمة' : 'فتح القائمة');
+      menuButton.textContent = open ? '×' : '☰';
+    });
+    navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      menuButton.setAttribute('aria-expanded', 'false');
+      menuButton.setAttribute('aria-label', 'فتح القائمة');
+      menuButton.textContent = '☰';
+    }));
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

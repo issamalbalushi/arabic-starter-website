@@ -1,22 +1,34 @@
-# موقع عربي تعريفي بسيط
+# Issam Ahmed Al Balushi — Personal Website
 
-قالب صفحة واحدة (HTML/CSS/JavaScript) باتجاه عربي RTL ومتجاوب مع الهواتف.
+A bilingual Arabic/English personal portfolio redesigned using the owner's supplied CV.
 
-## التشغيل
-- افتح ملف `index.html` في متصفحك مباشرة.
-- لا يحتاج إلى تثبيت حزم أو خادم.
-- يحتاج الاتصال بالإنترنت فقط لتحميل خط Cairo؛ يوجد خط بديل عند عدم توفر الاتصال.
+**Live website:** https://issamalbalushi.github.io/arabic-starter-website/
 
-## التخصيص
-- غيّر اسم **مشروعك** والنصوص داخل `index.html`.
-- غيّر الألوان من متغيرات CSS الموجودة في بداية الوسم `<style>`.
-- عدّل بطاقات الخدمات والأسئلة الشائعة وبيانات التواصل كما تشاء.
+## Sections
 
-## النشر باستخدام GitHub Pages
-1. أنشئ مستودعًا عامًا جديدًا أو اختر مستودعًا مخصصًا للموقع.
-2. ارفع ملف `index.html` في جذر المستودع.
-3. افتح المستودع ثم: `Settings → Pages`.
-4. من `Build and deployment` اختر `Deploy from a branch` ثم الفرع `main` والمجلد `/ (root)`.
-5. احفظ وانتظر تفعيل النشر. يظهر رابط الموقع داخل صفحة Pages.
+- Professional introduction / About
+- Experience (2017–2024 Oman Chamber of Commerce & Industry, 2013–2017 ASM Technologies, 2010–2012 3D Design LLC, 2007–2010 FOTO MAGIC)
+- Selected initiatives and projects, with category filters
+- Strategic management, digital innovation and creative expertise
+- Education and selected professional training
+- Email contact
 
-> ملاحظة: النصوص والعلامة التجارية في هذا الملف أمثلة قابلة للتعديل؛ لا تمثل جهة حقيقية.
+## Features
+
+- Responsive RTL/LTR design with Arabic as the default language
+- English toggle; language preference saved locally in the browser
+- Project filtering and expandable certificate listing
+- HTML, CSS and vanilla JavaScript only; no build system
+- No analytics, tracking or backend
+
+## Source and privacy
+
+Website content is adapted and condensed from **Issam Al Balushi CV.pdf** supplied by the owner. Some descriptions have been editorially summarized. The CV's specific street/neighborhood address, date of birth, and phone number are deliberately not displayed. The PDF is **not uploaded** to GitHub. The website displays a professional contact email and only city/country location.
+
+The visuals used for project cards are conceptual, not actual screenshots.
+
+## Edits and deployment
+
+Edit `index.html` on the default `main` branch. The existing workflow under `.github/workflows/deploy.yml` automatically publishes the updated site via GitHub Pages.
+
+The Arabic text is the initial element text; the English equivalent is stored in the `data-en` attribute. Language switching happens entirely in the browser.

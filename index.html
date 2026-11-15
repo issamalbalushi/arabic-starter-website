@@ -1,251 +1,66 @@
 <!doctype html>
-<html lang="ar" dir="rtl">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#173b59">
-  <meta name="description" content="قالب موقع عربي تعريفي بسيط وحديث، متجاوب مع الهواتف وسهل التخصيص.">
-  <title>مشروعك | حضور رقمي يبدأ من هنا</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap');
-    :root {
-      --navy: #173b59; --deep: #102e48; --blue: #3c718f; --sand: #e7dac6;
-      --cream: #f9f7f3; --ink: #203349; --muted: #6a7984; --white: #fff;
-      --border: #e8edf0; --shadow: 0 20px 60px rgba(18,46,72,.09);
-    }
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; scroll-padding-top: 92px; }
-    body { margin: 0; font-family: 'Cairo', Tahoma, sans-serif; color: var(--ink); background: #fff; line-height: 1.9; }
-    a { color: inherit; text-decoration: none; }
-    button { font: inherit; cursor: pointer; }
-    .container { width: min(1150px, calc(100% - 44px)); margin-inline: auto; }
-    .eyebrow { display: inline-flex; align-items: center; gap: 9px; color: var(--blue); font-size: 13px; font-weight: 800; letter-spacing: .2px; }
-    .eyebrow::before { content: ""; width: 19px; height: 3px; border-radius: 10px; background: #bd9f74; }
-    h1,h2,h3,p { margin-top: 0; }
-    h1 { font-size: clamp(38px, 5.1vw, 70px); line-height: 1.48; letter-spacing: -1.8px; font-weight: 800; margin: 16px 0 22px; }
-    h2 { font-size: clamp(29px, 3vw, 40px); line-height: 1.6; letter-spacing: -.7px; margin: 12px 0 12px; }
-    p { color: var(--muted); }
-    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 14px; min-height: 52px; border-radius: 12px; padding: 11px 25px; font-weight: 800; font-size: 14px; transition: transform .2s, background .2s, box-shadow .2s; }
-    .btn:hover { transform: translateY(-2px); }
-    .btn-primary { color: white; background: var(--navy); box-shadow: 0 8px 22px rgba(23,59,89,.19); }
-    .btn-primary:hover { background: var(--deep); }
-    .btn-outline { border: 1px solid #cfdce4; background: white; color: var(--navy); }
-    .btn-light { color: var(--navy); background: white; }
-    :focus-visible { outline: 3px solid #b99868; outline-offset: 4px; }
-    header { position: sticky; top: 0; z-index: 40; background: rgba(255,255,255,.94); backdrop-filter: blur(15px); border-bottom: 1px solid rgba(24,61,87,.07); }
-    .nav { display: flex; align-items: center; justify-content: space-between; min-height: 83px; gap: 28px; }
-    .brand { display: flex; gap: 11px; align-items: center; color: var(--navy); font-size: 22px; font-weight: 800; white-space: nowrap; }
-    .brandmark { display: grid; place-items: center; width: 41px; height: 41px; border-radius: 12px; background: var(--navy); color: white; font-size: 25px; line-height: 1; }
-    .navlinks { display: flex; align-items: center; gap: clamp(12px, 2.6vw, 35px); list-style: none; padding: 0; margin: 0; }
-    .navlinks a { font-weight: 700; font-size: 13px; color: #566a79; transition: color .2s; }
-    .navlinks a:hover { color: var(--navy); }
-    .menu-button { display:none; border: 1px solid var(--border); background:white; color:var(--navy); border-radius: 10px; width:44px; height:44px; font-size:22px; align-items:center; justify-content:center; }
-    .hero { min-height: 630px; padding: 77px 0 102px; background: linear-gradient(125deg,#fff 13%,#f7f9fa 66%,#f7f1e7 100%); position: relative; overflow: hidden; }
-    .hero::before { content:""; position:absolute; top:-235px; left:-140px; width:590px; height:590px; border:1px solid rgba(23,59,89,.08); border-radius:50%; box-shadow: 0 0 0 58px rgba(23,59,89,.015), 0 0 0 115px rgba(23,59,89,.012); pointer-events:none; }
-    .hero-grid { display: grid; grid-template-columns: 1.05fr 1fr; align-items: center; gap: 55px; position:relative; }
-    .hero-copy p { font-size: 16px; line-height:2.25; max-width: 500px; margin-bottom: 30px; }
-    .hero-highlight { color: var(--blue); position:relative; }
-    .hero-actions { display:flex; flex-wrap:wrap; gap: 12px; }
-    .hero-note { display:flex; gap:10px; align-items:center; margin-top:34px; font-size:12px; font-weight:700; color:#6c7b86; }
-    .hero-note .tick { color: #3b8968; background: #e5f3eb; width:26px; height:26px; border-radius:50%; display:grid; place-items:center; }
-    .visual { min-height: 420px; position: relative; display: flex; align-items: center; justify-content: center; }
-    .visual-glow { width: 350px; height:350px; position:absolute; border-radius:50%; background: radial-gradient(circle, #e9ddcb 0%, rgba(233,221,203,0) 70%); filter:blur(5px); }
-    .dashboard { position:relative; width:min(100%,465px); background:white; box-shadow:0 31px 90px rgba(21,59,88,.17); border:1px solid #eef1f2; border-radius:23px; padding:20px; transform:rotate(-3deg); }
-    .dash-top { display:flex; justify-content:space-between; align-items:center; padding-bottom:17px; border-bottom:1px solid #edf0f2; }
-    .dots { display:flex; gap:5px; } .dots i { display:block; width:7px; height:7px; border-radius:50%; background:#d5dce0; }
-    .dash-word { color:#8a98a2; font-size:12px; font-weight:800; letter-spacing:1px; }
-    .dash-body { display:grid; grid-template-columns:1fr 1fr; gap:12px; padding-top:18px; }
-    .mini-card { border-radius:13px; background:#f4f7f9; padding:20px 18px; min-height:116px; }
-    .mini-card .small { color:#6d7e89; font-size:12px; font-weight:700; margin-bottom:11px; }
-    .mini-card strong { color:var(--navy); font-size:31px; line-height:1.3; }
-    .mini-card.dark { background:var(--navy); } .mini-card.dark .small,.mini-card.dark strong { color:white; }
-    .mini-card.dark strong { font-size:25px; }
-    .dash-chart { grid-column:1/-1; padding:16px 20px 15px; border:1px solid #eef1f2; border-radius:13px; }
-    .chart-title { font-size:12px; color:#536b7a; font-weight:800; }
-    .bars { height:100px; display:flex; align-items:end; justify-content:space-between; gap:10px; padding:12px 7px 0; }
-    .bars span { display:block; width:12%; border-radius:6px 6px 0 0; background:#c3d4df; }
-    .bars span:nth-child(3n) { background:#bfa17a; } .bars span:nth-child(5) { background:#2f6380; }
-    .float-tag { position:absolute; left:-18px; bottom:35px; background:white; border:1px solid #edf0f2; box-shadow:0 14px 34px rgba(15,56,81,.14); border-radius:14px; padding:15px 17px; font-weight:800; font-size:12px; color:#254d65; display:flex; align-items:center; gap:12px; transform:rotate(3deg); }
-    .float-tag b { display:grid; place-items:center; width:30px; height:30px; background:#e8f5ed; color:#2c8f62; border-radius:9px; font-size:17px; }
-    section { padding: 100px 0; }
-    .section-head { max-width: 590px; margin-bottom:42px; }
-    .section-head p { font-size:15px; line-height:2.1; }
-    .services { background:white; }
-    .cards { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:20px; }
-    .service-card { border:1px solid var(--border); border-radius:18px; padding:35px 29px 30px; background:#fff; transition: transform .25s, box-shadow .25s,border-color .25s; }
-    .service-card:hover { transform:translateY(-5px); box-shadow:var(--shadow); border-color:#d6e4eb; }
-    .service-icon { width:60px; height:60px; display:grid; place-items:center; border-radius:15px; background:#f0f4f6; color:var(--navy); margin-bottom:25px; }
-    .service-icon svg { width:28px; height:28px; stroke:currentColor; fill:none; stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round; }
-    .service-card h3 { font-size:20px; color:var(--navy); margin-bottom:12px; }
-    .service-card p { font-size:13px; line-height:2.2; margin:0; }
-    .about { background:var(--cream); }
-    .about-grid { display:grid; grid-template-columns:1fr 1fr; gap:75px; align-items:center; }
-    .about-art { min-height:370px; border-radius:25px; position:relative; overflow:hidden; background:var(--navy); display:grid; place-items:center; }
-    .about-art::before,.about-art::after { content:""; position:absolute; border:1px solid rgba(255,255,255,.18); border-radius:50%; width:410px; height:410px; }
-    .about-art::before { top:-145px; right:-150px; } .about-art::after { bottom:-210px; left:-80px; width:500px; height:500px; }
-    .art-logo { position:relative; z-index:1; width:145px; height:145px; border:1px solid rgba(255,255,255,.35); border-radius:30px; transform:rotate(-12deg); display:grid; place-items:center; background:rgba(255,255,255,.065); box-shadow:0 16px 50px rgba(0,0,0,.08); }
-    .art-logo > span { color:white; font-size:70px; font-weight:800; transform:rotate(12deg); }
-    .art-caption { position:absolute; bottom:25px; right:27px; color:#dbe6ed; font-size:12px; font-weight:700; }
-    .about-copy p { font-size:15px; line-height:2.3; }
-    .checks { padding:0; margin:25px 0 0; list-style:none; display:grid; gap:12px; }
-    .checks li { font-size:14px; font-weight:800; color:#35536a; }
-    .checks li::before { content:"✓"; margin-left:13px; color:#2a9570; }
-    .steps { background:white; }
-    .steps-list { display:grid; grid-template-columns:repeat(3,1fr); gap:21px; margin-top:38px; }
-    .step { border-top:2px solid #d8e5ec; padding-top:26px; }
-    .step-num { display:inline-grid; place-items:center; width:44px; height:44px; background:#eaf1f5; color:var(--navy); border-radius:13px; font-weight:800; font-size:16px; margin-bottom:13px; }
-    .step h3 { margin-bottom:7px; color:var(--navy); font-size:18px; }
-    .step p { font-size:13px; max-width:270px; margin:0; }
-    .faq { background:#f7f9fa; }
-    .faq-grid { display:grid; grid-template-columns:.75fr 1.25fr; gap:55px; }
-    .faq details { background:white; border:1px solid var(--border); border-radius:13px; margin-bottom:13px; padding:18px 21px; }
-    .faq summary { color:var(--navy); cursor:pointer; list-style:none; font-weight:800; font-size:14px; display:flex; justify-content:space-between; align-items:center; gap:12px; }
-    .faq summary::-webkit-details-marker { display:none; }
-    .faq summary::after { content:"+"; font-size:23px; line-height:1; color:#a88a67; }
-    .faq details[open] summary::after { content:"−"; }
-    .faq details p { font-size:13px; margin:11px 0 0; }
-    .contact { padding: 85px 0; }
-    .cta { background:var(--navy); color:white; border-radius:27px; padding:52px 62px; display:flex; justify-content:space-between; align-items:center; gap:24px; position:relative; overflow:hidden; }
-    .cta::before { content:""; position:absolute; width:350px; height:350px; border:1px solid rgba(255,255,255,.12); border-radius:50%; top:-250px; left:10%; }
-    .cta h2 { color:white; margin-bottom:8px; font-size:clamp(25px,3vw,37px); position:relative; }
-    .cta p { color:#d1dde7; margin:0; font-size:14px; position:relative; }
-    .cta .btn { z-index:1; white-space:nowrap; }
-    footer { border-top:1px solid var(--border); padding:27px 0; background:#fff; }
-    .footer-inner { display:flex; align-items:center; justify-content:space-between; gap:20px; color:#738391; font-size:12px; font-weight:700; }
-    .footer-inner a { color:var(--navy); }
-    @media (max-width:950px) {
-      .hero-grid { gap:22px; } .dashboard {transform:rotate(-2deg) scale(.94);}
-      .about-grid {gap:40px;} .navlinks {gap:16px;}
-      .nav-cta {display:none;}
-    }
-    @media (max-width:730px) {
-      .container {width:min(100% - 32px, 510px);} .nav {min-height:72px;}
-      .menu-button {display:flex;}
-      .navlinks {position:absolute; top:72px; right:0; left:0; background:white; box-shadow:0 18px 24px rgba(18,46,72,.09); border-bottom:1px solid var(--border); padding:13px 22px 20px; flex-direction:column; align-items:stretch; gap:3px; display:none;}
-      .navlinks.open {display:flex;} .navlinks a {display:block; padding:10px 0;}
-      .hero {padding:50px 0 65px;} .hero-grid,.about-grid,.faq-grid {grid-template-columns:1fr; gap:35px;}
-      h1 {font-size:38px; letter-spacing:-1px;} section {padding:69px 0;}
-      .hero-copy p {font-size:14px;} .visual {min-height:320px;}.dashboard {width:87%; transform:rotate(-2deg) scale(.94);} .float-tag {left:-18px; bottom:10px;}
-      .cards,.steps-list {grid-template-columns:1fr;} .service-card {padding:26px;}
-      .about-art {min-height:275px;} .cta {padding:37px 27px; flex-direction:column; align-items:stretch;} .cta .btn{align-self:flex-start;}
-      .footer-inner {flex-direction:column;text-align:center;gap:7px;}
-    }
-    @media (prefers-reduced-motion:reduce) {html{scroll-behavior:auto;}*,*::before,*::after{transition:none!important;animation:none!important;}}
-  </style>
-</head>
-<body>
-  <header>
-    <nav class="nav container" aria-label="التنقل الرئيسي">
-      <a href="#home" class="brand" aria-label="مشروعك - الصفحة الرئيسية">
-        <span class="brandmark" aria-hidden="true">م</span>
-        <span>مشروعك<span style="color:#b99972">.</span></span>
-      </a>
-      <button id="menuButton" class="menu-button" aria-label="فتح القائمة" aria-expanded="false" aria-controls="navLinks">☰</button>
-      <ul id="navLinks" class="navlinks">
-        <li><a href="#home">الرئيسية</a></li>
-        <li><a href="#services">خدماتنا</a></li>
-        <li><a href="#about">من نحن</a></li>
-        <li><a href="#steps">كيف نعمل</a></li>
-        <li><a href="#faq">الأسئلة الشائعة</a></li>
-      </ul>
-      <a class="btn btn-primary nav-cta" href="#contact">تواصل معنا <span aria-hidden="true">←</span></a>
-    </nav>
-  </header>
-
-  <main>
-    <section class="hero" id="home">
-      <div class="container hero-grid">
-        <div class="hero-copy">
-          <span class="eyebrow">موقع تعريفي عصري وسهل التعديل</span>
-          <h1>فكرتك تستحق<br><span class="hero-highlight">حضورًا يليق بها.</span></h1>
-          <p>نموذج موقع عربي بسيط وأنيق، يجمع بين التصميم الواضح والتجربة السلسة. نقطة انطلاق مثالية لتقديم مشروعك وخدماتك بصورة احترافية.</p>
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="#services">اكتشف خدماتنا <span aria-hidden="true">←</span></a>
-            <a class="btn btn-outline" href="#about">تعرف علينا</a>
-          </div>
-          <div class="hero-note"><span class="tick" aria-hidden="true">✓</span> تصميم متجاوب • لغة عربية • قابل للتخصيص</div>
-        </div>
-        <div class="visual" aria-label="رسم توضيحي لواجهة لوحة معلومات">
-          <div class="visual-glow" aria-hidden="true"></div>
-          <div class="dashboard" aria-hidden="true">
-            <div class="dash-top"><span class="dash-word">YOUR PROJECT</span><div class="dots"><i></i><i></i><i></i></div></div>
-            <div class="dash-body">
-              <div class="mini-card dark"><div class="small">رؤية واضحة</div><strong>مستقبل أفضل</strong></div>
-              <div class="mini-card"><div class="small">جودة التصميم</div><strong>100%</strong></div>
-              <div class="dash-chart"><div class="chart-title">مسار النمو والتطوير</div>
-                <div class="bars"><span style="height:32%"></span><span style="height:49%"></span><span style="height:38%"></span><span style="height:65%"></span><span style="height:57%"></span><span style="height:77%"></span><span style="height:67%"></span><span style="height:88%"></span></div>
-              </div>
-            </div>
-          </div>
-          <div class="float-tag" aria-hidden="true"><b>✓</b> تجربة رقمية أبسط وأجمل</div>
-        </div>
-      </div>
-    </section>
-
-    <section id="services" class="services">
-      <div class="container">
-        <div class="section-head"><span class="eyebrow">ما الذي نقدمه؟</span><h2>خدمات تصنع الفرق</h2><p>يمكنك تغيير هذه البطاقات لتعكس خدمات مؤسستك أو مشروعك، مع الحفاظ على واجهة مرتبة وسهلة القراءة.</p></div>
-        <div class="cards">
-          <article class="service-card"><div class="service-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M3 9h18M8 4v16"/></svg></div><h3>حلول مبتكرة</h3><p>نحوّل الأفكار إلى تجارب واضحة وعملية تلبي الاحتياجات وتساعد على تحقيق الأهداف.</p></article>
-          <article class="service-card"><div class="service-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m4 17 5-5 4 3 7-8M15 7h5v5"/><path d="M4 21h16"/></svg></div><h3>تطوير مستمر</h3><p>نركز على الجودة والتحسين المتواصل لنمنح عملاءنا قيمة أكبر في كل مرحلة.</p></article>
-          <article class="service-card"><div class="service-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M5 20c0-4 3-6 7-6s7 2 7 6"/><path d="M4 8H2m20 0h-2"/></svg></div><h3>شراكات ناجحة</h3><p>نبني علاقات مهنية قائمة على الثقة والوضوح، ونسعى مع شركائنا إلى نتائج ملموسة.</p></article>
-        </div>
-      </div>
-    </section>
-
-    <section id="about" class="about">
-      <div class="container about-grid">
-        <div class="about-art" aria-label="رسم تجريدي بألوان الهوية"><div class="art-logo"><span>م</span></div><div class="art-caption">تصميم بسيط. أثر كبير.</div></div>
-        <div class="about-copy"><span class="eyebrow">من نحن</span><h2>نؤمن أن التفاصيل<br>تصنع تجربة أفضل</h2><p>هذه مساحة مخصصة لتقديم نبذة عن مشروعك أو مؤسستك. اكتب هنا قصتك، رؤيتك، وما الذي يميزك. استخدم لغة بسيطة تعكس شخصيتك المهنية وتترك انطباعًا واضحًا لدى الزائر.</p>
-          <ul class="checks"><li>واجهة سهلة وواضحة للزوار</li><li>تصميم مناسب لمختلف الشاشات</li><li>محتوى يمكنك تحديثه متى أردت</li></ul>
-        </div>
-      </div>
-    </section>
-
-    <section id="steps" class="steps">
-      <div class="container"><div class="section-head"><span class="eyebrow">رحلتنا معك</span><h2>ثلاث خطوات نحو الأفضل</h2><p>نُبسّط الرحلة منذ البداية حتى الوصول إلى النتيجة التي تطمح إليها.</p></div>
-        <div class="steps-list">
-          <article class="step"><span class="step-num">01</span><h3>نستمع ونفهم</h3><p>نبدأ بفهم احتياجاتك وأهدافك لتتضح الصورة كاملة.</p></article>
-          <article class="step"><span class="step-num">02</span><h3>نخطط وننفذ</h3><p>نختار الحلول المناسبة ونحول التصور إلى خطوات عملية.</p></article>
-          <article class="step"><span class="step-num">03</span><h3>نطوّر وننجح</h3><p>نراجع النتائج ونواصل التحسين لتحقيق أثر مستدام.</p></article>
-        </div>
-      </div>
-    </section>
-
-    <section id="faq" class="faq">
-      <div class="container faq-grid">
-        <div><span class="eyebrow">أسئلة متكررة</span><h2>إجابات سريعة<br>وواضحة</h2><p>يمكنك استبدال الأسئلة التالية بأكثر ما يسأله عملاؤك أو زوار موقعك.</p></div>
-        <div>
-          <details><summary>هل الموقع مناسب للهواتف؟</summary><p>نعم، يتكيف الموقع تلقائيًا مع الهاتف والجهاز اللوحي وشاشة الكمبيوتر.</p></details>
-          <details><summary>هل يمكن تغيير النصوص والألوان؟</summary><p>نعم، جميع الأقسام والألوان قابلة للتعديل داخل ملف index.html.</p></details>
-          <details><summary>هل يحتاج الموقع إلى اشتراك لاستضافته؟</summary><p>يمكنك نشر هذا الموقع الثابت باستخدام GitHub Pages دون خادم خاص، مع مراعاة إعدادات المستودع وشروط الخدمة.</p></details>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact" class="contact">
-      <div class="container"><div class="cta"><div><span class="eyebrow" style="color:#e4d1b6">ابدأ من هنا</span><h2>مستعد لتقديم مشروعك للعالم؟</h2><p>خصّص اسم الموقع والنصوص والخدمات، ثم انشره على GitHub Pages.</p></div><a href="#home" class="btn btn-light">العودة للبداية <span aria-hidden="true">↑</span></a></div></div>
-    </section>
-  </main>
-
-  <footer><div class="container footer-inner"><span>© <span id="year">2026</span> مشروعك. جميع الحقوق محفوظة.</span><span>نموذج تعريفي جاهز للتعديل والنشر</span><a href="#home">العودة لأعلى ↑</a></div></footer>
-
-  <script>
-    const menuButton = document.getElementById('menuButton');
-    const navLinks = document.getElementById('navLinks');
-    menuButton.addEventListener('click', () => {
-      const open = navLinks.classList.toggle('open');
-      menuButton.setAttribute('aria-expanded', String(open));
-      menuButton.setAttribute('aria-label', open ? 'إغلاق القائمة' : 'فتح القائمة');
-      menuButton.textContent = open ? '×' : '☰';
-    });
-    navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
-      navLinks.classList.remove('open');
-      menuButton.setAttribute('aria-expanded', 'false');
-      menuButton.setAttribute('aria-label', 'فتح القائمة');
-      menuButton.textContent = '☰';
-    }));
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
-</body>
-</html>
+<html lang="ar" dir="rtl"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#142b3b">
+<meta name="description" content="الموقع الشخصي لعصام أحمد البلوشي: الإدارة الاستراتيجية، الابتكار الرقمي، الاتصال البصري. Issam Ahmed Al Balushi — Strategy, Digital Innovation and Design.">
+<meta property="og:type" content="website"><meta property="og:title" content="عصام أحمد البلوشي | Issam Ahmed Al Balushi"><meta property="og:url" content="https://issamalbalushi.github.io/arabic-starter-website/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23142b3b'/%3E%3Ctext x='32' y='41' text-anchor='middle' fill='%23deb585' font-size='25' font-family='Arial' font-weight='bold'%3EIA%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Tajawal:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<title>عصام أحمد البلوشي | الموقع الشخصي</title><style>
+:root{--navy:#142b3b;--navy2:#1e4355;--gold:#d5aa79;--paper:#faf9f6;--white:#fff;--muted:#657782;--line:#e6e9e7;--soft:#f3f5f2}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:92px}body{margin:0;background:var(--paper);color:var(--navy);font-family:Tajawal,Arial,sans-serif;line-height:1.82;font-size:17px}html[lang=en] body{font-family:'DM Sans',Arial,sans-serif;font-size:15px;line-height:1.65}a{color:inherit;text-decoration:none}button{font:inherit}h1,h2,h3,p{margin-top:0}a:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offset:3px}::selection{background:#dfc09a;color:#152f3b}.container{width:min(1170px,calc(100% - 72px));margin:auto}
+.header{position:sticky;top:0;z-index:10;background:rgba(250,249,246,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}.nav{height:80px;display:flex;align-items:center;justify-content:space-between;gap:24px}.brand{display:flex;align-items:center;gap:12px;flex-shrink:0}.mark{width:45px;height:45px;border-radius:12px;background:var(--navy);display:grid;place-items:center;color:#ecd0aa;font:800 16px 'DM Sans',Arial,sans-serif;direction:ltr;letter-spacing:-1px}.brand b{display:block;font-weight:800;line-height:1.3}.brand small{display:block;font:700 10px 'DM Sans',sans-serif;color:#a48a6e;letter-spacing:2px}.links{display:flex;list-style:none;margin:0;padding:0;gap:25px}.links a{color:#536873;font-size:14px;font-weight:700}.links a:hover{color:#ae8458}.navtools{display:flex;gap:11px;align-items:center}.lang{cursor:pointer;border:1px solid #ccd7d6;border-radius:9px;background:transparent;padding:10px 12px;color:var(--navy);font:800 12px 'DM Sans',sans-serif}.navcta{color:white;background:var(--navy);border-radius:9px;padding:12px 17px;font-weight:800;font-size:14px}.hamburger{display:none;cursor:pointer;background:none;border:1px solid #d5dfde;border-radius:8px;color:var(--navy);width:42px;height:42px;font-size:24px}
+.hero{background:var(--navy);position:relative;overflow:hidden;color:#fff}.hero:before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.048) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.048) 1px,transparent 1px);background-size:75px 75px;mask-image:linear-gradient(90deg,transparent,#000)}.hero:after{content:'';position:absolute;border:1px solid rgba(255,255,255,.09);height:640px;width:640px;border-radius:50%;left:-285px;top:-250px;box-shadow:0 0 0 55px rgba(255,255,255,.014),0 0 0 120px rgba(255,255,255,.012)}.hero-grid{min-height:630px;padding:105px 0;position:relative;z-index:1;display:grid;grid-template-columns:1.1fr .9fr;gap:35px;align-items:center}.eyebrow{display:inline-flex;align-items:center;gap:11px;border-radius:50px;border:1px solid rgba(255,255,255,.24);padding:6px 15px;color:#dce7e5;font-weight:700;font-size:13px}.eyebrow:before{content:'';display:block;width:7px;height:7px;border-radius:50%;background:var(--gold)}.hero h1{font-size:clamp(42px,5vw,70px);line-height:1.3;letter-spacing:-1.7px;font-weight:800;margin:22px 0}.hero h1 .gold{color:var(--gold)}.roman{font:700 13px 'DM Sans',Arial,sans-serif;color:#bbcbd0;letter-spacing:1.3px;margin:0 0 22px}.intro{max-width:610px;font-size:17px;line-height:2;color:#cbdae0;margin-bottom:27px}.hero-actions{display:flex;flex-wrap:wrap;gap:10px}.btn{display:inline-flex;align-items:center;justify-content:center;padding:13px 24px;border-radius:9px;min-height:52px;font-size:14px;font-weight:800}.primary{color:var(--navy);background:#d9b389}.outline{border:1px solid rgba(255,255,255,.3);color:#fff}.btn:hover{transform:translateY(-2px)}.place{display:flex;align-items:center;gap:9px;font-size:13px;margin-top:34px;color:#b7c6cd}.place:before{content:'◉';color:var(--gold)}.visual{min-height:420px;display:grid;place-items:center;position:relative}.orbit{width:min(420px,100%);aspect-ratio:1;border-radius:50%;border:1px solid rgba(255,255,255,.2);box-shadow:0 0 0 48px rgba(255,255,255,.018),0 0 0 98px rgba(255,255,255,.012);display:grid;place-items:center;position:relative;background:radial-gradient(circle,rgba(62,118,135,.22),transparent 68%)}.orbit:after{content:'';position:absolute;inset:32px;border:1px solid rgba(255,255,255,.14);border-radius:50%;transform:scaleX(.7) rotate(-28deg)}.monogram{font:800 clamp(110px,13vw,172px) 'DM Sans',sans-serif;direction:ltr;letter-spacing:-17px;z-index:2;line-height:1}.monogram em{font-style:normal;color:var(--gold)}.orbit:before{content:'';position:absolute;width:10px;height:10px;background:var(--gold);border-radius:50%;top:9%;right:20%;box-shadow:0 0 21px var(--gold)}.float-note{position:absolute;background:#f5f2ea;color:var(--navy);padding:13px 17px;border-radius:10px;box-shadow:0 14px 50px rgba(0,0,0,.2);font:800 21px 'DM Sans',sans-serif;z-index:3}.float-note small{display:block;color:#88949a;font-size:10px;letter-spacing:1.8px}.float-note.one{top:40px;right:0;transform:rotate(4deg)}.float-note.two{left:0;bottom:42px;transform:rotate(-5deg);font-size:17px}
+.stats{background:#fff;border-bottom:1px solid var(--line)}.stats-inner{display:grid;grid-template-columns:repeat(3,1fr);padding:27px 0}.stat{display:flex;align-items:center;justify-content:center;gap:18px;min-height:70px}.stat:not(:last-child){border-inline-end:1px solid var(--line)}.stat strong{font:800 37px 'DM Sans',sans-serif;color:#ba925f;letter-spacing:-2px}.stat span{font-size:13px;color:#546875;max-width:175px;font-weight:700;line-height:1.55}
+.section{padding:105px 0}.section.white{background:#fff}.kicker{font:800 11px 'DM Sans',sans-serif;letter-spacing:2px;color:#ad865b;margin-bottom:15px}.kicker b{color:#bd9972;margin-inline-end:13px}.section h2,.contact h2{font-size:clamp(32px,3.9vw,46px);line-height:1.3;font-weight:800;letter-spacing:-1.1px;margin:0 0 15px}.section-lead{max-width:770px;color:var(--muted);font-size:16px;line-height:1.95;margin:0 0 37px}.two-col{display:grid;grid-template-columns:1.05fr .95fr;gap:70px;align-items:center}.about-text p{color:#667984;font-size:17px;line-height:2.04}.about-text .quote{font-weight:800;color:var(--navy);border-inline-start:3px solid var(--gold);padding-inline-start:18px;margin-top:23px}.about-box{border:1px solid #e2e5e1;background:#f3f4ef;border-radius:19px;padding:34px}.about-box h3{font-size:22px;margin:0 0 20px}.chips{display:flex;flex-wrap:wrap;gap:9px}.chip{display:inline-block;background:#fff;border:1px solid #dbe4e2;border-radius:80px;padding:8px 13px;font-size:13px;color:#415c6b;font-weight:700}.about-box hr{border:0;height:1px;background:#dfe3db;margin:24px 0}.about-box p{font-size:13px;color:#6b7f85;margin:0}.focus{display:grid;grid-template-columns:repeat(3,1fr);gap:21px;margin-top:54px}.focus-item{border-top:1px solid #d9e0e0;padding-top:20px}.focus-item span{font:800 12px 'DM Sans',sans-serif;color:#b18b5b}.focus-item h3{margin:8px 0;font-size:19px}.focus-item p{color:#70828b;font-size:14px;margin:0}
+.timeline{display:grid;grid-template-columns:1fr 1fr;gap:18px}.job{border:1px solid var(--line);background:#fff;padding:28px 30px;border-radius:14px;position:relative}.job:before{content:'';position:absolute;top:0;inset-inline-start:30px;height:3px;width:50px;background:#cba576}.job-date{font:800 13px 'DM Sans',sans-serif;color:#b88c5b;letter-spacing:1px;margin:0 0 12px}.job h3{font-size:22px;line-height:1.35;margin:0 0 4px}.org{font-size:13px;font-weight:800;color:#637783;margin-bottom:16px}.job p{color:#6a7c86;font-size:14px;margin:0;line-height:1.85}
+.projects-top{display:flex;align-items:end;justify-content:space-between;gap:20px;margin-bottom:26px}.projects-top .section-lead{margin:0}.filters{display:flex;gap:7px;flex-wrap:wrap}.filter{border:1px solid #d8e0df;border-radius:80px;background:#fff;color:#647781;padding:9px 14px;font-size:13px;font-weight:800;cursor:pointer}.filter[aria-pressed=true]{color:white;background:var(--navy);border-color:var(--navy)}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.work-card{background:white;border:1px solid var(--line);overflow:hidden;border-radius:16px;transition:transform .2s,box-shadow .2s}.work-card:hover{transform:translateY(-4px);box-shadow:0 15px 55px rgba(14,49,65,.09)}.work-card[hidden]{display:none}.work-art{height:173px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}.art-brand{background:linear-gradient(135deg,#142f47,#385e70)}.art-tech{background:linear-gradient(135deg,#1d5660,#68a3a1)}.art-impact{background:linear-gradient(135deg,#5e554c,#a68b6e)}.work-art:before{content:'';width:230px;height:230px;border:1px solid rgba(255,255,255,.25);border-radius:50%;position:absolute;top:-80px;right:-40px;box-shadow:0 0 0 45px rgba(255,255,255,.03)}.art-glyph{height:79px;width:79px;display:grid;place-items:center;border-radius:21px;border:1px solid rgba(255,255,255,.4);background:rgba(255,255,255,.12);font-size:54px;color:#f7ead9;transform:rotate(-7deg)}.art-num,.art-label{position:absolute;color:rgba(255,255,255,.75);font:800 10px 'DM Sans',sans-serif;letter-spacing:1px}.art-num{top:16px;inset-inline-start:20px}.art-label{bottom:13px;inset-inline-end:15px}.work-body{padding:24px 25px 28px}.work-type{font-size:12px;color:#ae855b;font-weight:800}.work-body h3{font-size:20px;line-height:1.4;margin:10px 0}.work-body p{font-size:14px;line-height:1.8;color:#697d87;margin:0}.project-note{color:#819097;font-size:12px;margin:20px 0 0}
+.soft{background:var(--soft)}.expertise-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.skill{background:#fff;border:1px solid #e2e7e4;border-radius:14px;padding:31px 29px;min-height:333px}.skill-num{display:grid;place-items:center;height:48px;width:48px;border-radius:11px;color:#477383;background:#edf3f3;font:800 15px 'DM Sans',sans-serif;margin-bottom:23px}.skill h3{font-size:21px;line-height:1.35;margin:0 0 17px}.skill ul{list-style:none;padding:0;margin:0}.skill li{border-top:1px solid #eef0ed;padding:9px 0;font-size:14px;color:#697d87;line-height:1.45}
+.education-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px}.degree{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;border-bottom:1px solid var(--line);padding:21px 0}.degree strong{display:block;font-size:17px;line-height:1.3}.degree small{display:block;color:#69808b;font-size:13px;margin-top:7px}.degree time{font:800 12px 'DM Sans',sans-serif;color:#b18c60;white-space:nowrap}.cert-list{display:flex;flex-wrap:wrap;gap:9px;margin-top:22px}.cert{background:#fafbfa;border:1px solid #e1e7e6;border-radius:9px;padding:9px 13px;font-size:13px;font-weight:700;color:#58717c}.cert.optional{display:none}.cert-list.expanded .cert.optional{display:inline-block}.show-more{cursor:pointer;border:0;border-bottom:1px solid #b99261;background:none;color:#976b3e;padding:8px 0;font-size:14px;font-weight:800;margin-top:17px}
+.contact{background:var(--navy);color:#fff;padding:89px 0 28px;overflow:hidden}.contact-row{display:flex;justify-content:space-between;align-items:center;gap:38px}.contact p{max-width:600px;color:#c6d4d7;margin:0;font-size:16px}.contact-buttons{display:flex;flex-direction:column;gap:10px;min-width:230px}.contact-buttons a{border-radius:9px;padding:13px 24px;white-space:nowrap;text-align:center;font-size:14px;font-weight:800}.contact-buttons a:first-child{background:#dcb78c;color:var(--navy)}.contact-buttons a:last-child{border:1px solid rgba(255,255,255,.32);color:#fff}.footer{margin-top:83px;padding:26px 0 0;border-top:1px solid rgba(255,255,255,.14);display:flex;justify-content:space-between;gap:17px;color:#b3c3c8;font-size:12px}.footer small{font:700 10px 'DM Sans',sans-serif;letter-spacing:2px}
+html[lang=en] .intro{line-height:1.9}html[lang=en] .about-text p{line-height:1.85}
+@media(max-width:1050px){.links{gap:13px}.hero-grid{gap:8px}.orbit{width:350px}.two-col{gap:40px}.education-grid{gap:38px}}
+@media(max-width:840px){.container{width:calc(100% - 44px)}.hamburger{display:block}.navcta{display:none}.links{display:none;position:absolute;top:80px;left:0;right:0;box-shadow:0 20px 30px rgba(15,45,60,.1);background:var(--paper);border-bottom:1px solid var(--line);padding:17px 28px;flex-direction:column;align-items:stretch;gap:3px}.links.open{display:flex}.links a{display:block;padding:10px}.hero-grid{grid-template-columns:1fr;padding:75px 0 65px}.visual{min-height:330px}.orbit{width:300px}.float-note.one{right:16%;top:5px}.float-note.two{left:13%;bottom:5px}.two-col{grid-template-columns:1fr}.cards,.expertise-grid{grid-template-columns:repeat(2,1fr)}.education-grid{grid-template-columns:1fr}.contact-row{flex-direction:column;align-items:stretch}.contact-buttons{flex-direction:row}.contact-buttons a{flex:1}}
+@media(max-width:590px){.container{width:calc(100% - 36px)}.nav{height:72px}.links{top:72px}.hero-grid{padding:58px 0}.hero h1{font-size:41px}.intro{font-size:15px}.visual{min-height:295px}.orbit{width:245px}.monogram{font-size:112px;letter-spacing:-12px}.float-note.one{right:0}.float-note.two{left:0}.float-note{font-size:18px}.stats-inner{padding:19px 0}.stat{flex-direction:column;text-align:center;gap:7px}.stat strong{font-size:29px}.stat span{font-size:11px}.section{padding:70px 0}.section h2{font-size:32px}.focus,.timeline,.cards,.expertise-grid{grid-template-columns:1fr}.projects-top{align-items:flex-start;flex-direction:column}.contact{padding:68px 0 26px}.contact h2{font-size:33px}.contact-buttons{flex-direction:column}.footer{margin-top:62px;flex-direction:column}.degree strong{font-size:15px}.degree time{font-size:10px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}
+</style></head>
+<body><header class="header"><nav class="nav container" aria-label="التنقل الرئيسي">
+<a class="brand" href="#top"><span class="mark" aria-hidden="true">IA</span><span><b><span data-en="Issam Al Balushi">عصام البلوشي</span></b><small>PERSONAL WEBSITE</small></span></a>
+<ul class="links" id="navigation"><li><a href="#about"><span data-en="About">نبذة عني</span></a></li><li><a href="#experience"><span data-en="Experience">الخبرات</span></a></li><li><a href="#projects"><span data-en="Projects">المشاريع</span></a></li><li><a href="#expertise"><span data-en="Expertise">التخصصات</span></a></li><li><a href="#education"><span data-en="Education">المؤهلات</span></a></li></ul>
+<div class="navtools"><button id="lang" class="lang" type="button" aria-label="Switch to English">EN</button><a href="#contact" class="navcta"><span data-en="Contact">تواصل معي</span></a><button id="hamburger" class="hamburger" type="button" aria-controls="navigation" aria-expanded="false" aria-label="القائمة">☰</button></div></nav></header>
+<main><section class="hero" id="top"><div class="container hero-grid"><div>
+<span class="eyebrow"><span data-en="Strategy • Technology • Creativity">الاستراتيجية • التقنية • الإبداع</span></span>
+<h1><span data-en="Hello, I'm">مرحبًا، أنا</span><br><span class="gold"><span data-en="Issam Ahmed">عصام أحمد</span></span><br><span data-en="Al Balushi">البلوشي</span></h1>
+<p class="roman">ISSAM AHMED AL BALUSHI · MBA</p>
+<p class="intro"><span data-en="I connect strategic thinking with digital innovation and visual communication — turning ambitious ideas into practical solutions and organizational value.">أجمع بين التفكير الاستراتيجي والابتكار الرقمي والاتصال البصري، لأحوّل الأفكار الطموحة إلى حلول عملية وقيمة مؤسسية ملموسة.</span></p>
+<div class="hero-actions"><a href="#projects" class="btn primary"><span data-en="Explore my work">اكتشف أعمالي</span> ↗</a><a href="#contact" class="btn outline"><span data-en="Get in touch">تواصل معي</span></a></div>
+<div class="place"><span data-en="Muscat, Oman • Open to professional connections">مسقط، سلطنة عُمان • متاح للتواصل المهني</span></div>
+</div><div class="visual" aria-hidden="true"><div class="orbit"><span class="monogram">I<em>A</em></span></div><div class="float-note one"><small>BACKGROUND</small>15+ <span data-en="years">عامًا</span></div><div class="float-note two"><small>APPROACH</small><span data-en="Strategy × Design">استراتيجية × تصميم</span></div></div></div></section>
+<div class="stats"><div class="container stats-inner"><div class="stat"><strong>15+</strong><span><span data-en="Years in digital media &amp; business">عامًا في الإعلام الرقمي والأعمال</span></span></div><div class="stat"><strong>480+</strong><span><span data-en="Omani trainees mentored">متدربًا عُمانيًا في الإعلام الرقمي</span></span></div><div class="stat"><strong>MBA</strong><span><span data-en="Business &amp; strategic management">إدارة الأعمال والتخطيط الاستراتيجي</span></span></div></div></div>
+<section class="section white" id="about"><div class="container"><div class="two-col"><div class="about-text">
+<div class="kicker"><b>01</b> / ABOUT</div><h2><span data-en="Where strategy meets creative thinking">حيث تلتقي الاستراتيجية بالتفكير الإبداعي</span></h2>
+<p><span data-en="My career spans digital media, visual communication, technology-led projects and business strategy — connecting organizational goals, audience needs and meaningful execution.">تمتد مسيرتي المهنية عبر الإعلام الرقمي والاتصال البصري والمشاريع التقنية والاستراتيجية المؤسسية. وقد ركّزت على الربط بين أهداف المؤسسات واحتياجات الجمهور والتنفيذ الفعّال.</span></p>
+<p><span data-en="With an MBA background and experience in branding, reporting, e-learning and immersive technologies, I combine analytical perspective with hands-on creative expertise.">بخلفية أكاديمية في إدارة الأعمال وخبرة عملية في الهوية المؤسسية والتقارير والتعلّم الإلكتروني وتقنيات الواقع الممتد، أجمع بين الرؤية التحليلية والخبرة الإبداعية.</span></p>
+<p class="quote"><span data-en="I believe effective strategy becomes powerful when it is clear, creative and actionable.">أؤمن بأن الاستراتيجية الفعّالة تصبح أكثر تأثيرًا عندما تكون واضحة ومبتكرة وقابلة للتنفيذ.</span></p></div>
+<aside class="about-box"><div class="kicker">WHAT I BRING</div><h3><span data-en="A multidisciplinary perspective">رؤية تجمع بين تخصصات متعددة</span></h3><div class="chips"><span class="chip"><span data-en="Strategic planning">التخطيط الاستراتيجي</span></span><span class="chip"><span data-en="Digital transformation">التحول الرقمي</span></span><span class="chip"><span data-en="Brand governance">حوكمة الهوية</span></span><span class="chip"><span data-en="Data-driven decisions">قرارات مبنية على البيانات</span></span><span class="chip"><span data-en="AR / VR">الواقع الافتراضي والمعزز</span></span><span class="chip"><span data-en="Corporate communication">الاتصال المؤسسي</span></span></div><hr><div class="kicker">MY APPROACH</div><p><span data-en="Understand the challenge, align the vision, and build solutions with purpose.">فهم التحدي، وتوحيد الرؤية، وصناعة حلول تخدم أهدافًا واضحة.</span></p></aside></div>
+<div class="focus"><div class="focus-item"><span>01</span><h3><span data-en="Strategic Direction">الرؤية الاستراتيجية</span></h3><p><span data-en="From analysis and planning to actionable priorities.">من التحليل والتخطيط إلى أولويات قابلة للتنفيذ.</span></p></div><div class="focus-item"><span>02</span><h3><span data-en="Digital Possibilities">الفرص الرقمية</span></h3><p><span data-en="Using technology and AI to enable progress.">توظيف التقنية والذكاء الاصطناعي في التطوير.</span></p></div><div class="focus-item"><span>03</span><h3><span data-en="Meaningful Communication">التواصل المؤثر</span></h3><p><span data-en="Building strong identities and clear narratives.">بناء هويات قوية ورسائل واضحة ومؤثرة.</span></p></div></div>
+</div></section>
+<section class="section" id="experience"><div class="container"><div class="kicker"><b>02</b> / EXPERIENCE</div><h2><span data-en="A journey across disciplines">مسيرة مهنية متعددة التخصصات</span></h2><p class="section-lead"><span data-en="Experience across design, digital media, technology and institutional communication.">خبرات تمتد من التصميم والإعلام الرقمي إلى المشاريع التقنية والاتصال المؤسسي.</span></p><div class="timeline"><article class="job"><div class="job-date">2017—2024</div><div><h3><span data-en="Designer">مصمم</span></h3><div class="org"><span data-en="Oman Chamber of Commerce &amp; Industry · Muscat">غرفة تجارة وصناعة عُمان · مسقط</span></div><p><span data-en="Corporate branding, digital content strategy, campaign alignment and institutional annual reporting.">الهوية المؤسسية، المحتوى الرقمي، مواءمة الحملات وإعداد التقارير السنوية للمؤسسة.</span></p></div></article><article class="job"><div class="job-date">2013—2017</div><div><h3><span data-en="Digital Media Specialist">أخصائي الإعلام الرقمي</span></h3><div class="org"><span data-en="ASM Technologies LLC · Muscat">ASM Technologies · مسقط</span></div><p><span data-en="Managing e-learning delivery, AR/VR solutions, interactive media and multidisciplinary teams.">إدارة مشاريع التعلّم الإلكتروني وتطوير حلول الواقع المعزز والافتراضي والمحتوى التفاعلي ثلاثي الأبعاد.</span></p></div></article><article class="job"><div class="job-date">2010—2012</div><div><h3><span data-en="Creative &amp; Multimedia Specialist">أخصائي إبداع ووسائط متعددة</span></h3><div class="org"><span data-en="3D Design LLC · Muscat">3D Design LLC · مسقط</span></div><p><span data-en="Creating animation, 3D models and multimedia content for major campaigns.">تطوير الرسوم المتحركة والنماذج ثلاثية الأبعاد والمحتوى البصري للحملات التجارية.</span></p></div></article><article class="job"><div class="job-date">2007—2010</div><div><h3><span data-en="Graphic Designer">مصمم جرافيك</span></h3><div class="org"><span data-en="FOTO MAGIC LLC · Muscat">FOTO MAGIC · مسقط</span></div><p><span data-en="Professional photography, customer creative services and marketing support.">التصوير الاحترافي والخدمات الإبداعية وتجربة العملاء ودعم أنشطة التسويق.</span></p></div></article></div></div></section>
+<section class="section white" id="projects"><div class="container"><div class="projects-top"><div><div class="kicker"><b>03</b> / SELECTED PROJECTS</div><h2><span data-en="Selected work with purpose">مشاريع وتجارب صنعت الأثر</span></h2><p class="section-lead"><span data-en="Selected initiatives and collaborations from my professional background.">نماذج من المبادرات والتعاونات الواردة في سيرتي الذاتية.</span></p></div>
+<div class="filters" role="group" aria-label="تصفية المشاريع"><button class="filter" data-filter="all" aria-pressed="true"><span data-en="All">الكل</span></button><button class="filter" data-filter="brand" aria-pressed="false"><span data-en="Strategy &amp; Brand">الهوية والاستراتيجية</span></button><button class="filter" data-filter="tech" aria-pressed="false"><span data-en="Technology">التقنية</span></button><button class="filter" data-filter="impact" aria-pressed="false"><span data-en="Social Impact">الأثر المجتمعي</span></button></div></div>
+<div class="cards"><article class="work-card" data-group="brand"><div class="work-art art-brand"><span class="art-num">01</span><div class="art-glyph">◇</div><span class="art-label">ISSAM / SELECTED WORK</span></div><div class="work-body"><span class="work-type"><span data-en="BRAND GOVERNANCE">الهوية المؤسسية</span></span><h3><span data-en="Oman Chamber Corporate Identity">هوية غرفة تجارة وصناعة عُمان</span></h3><p><span data-en="Supervised development of the Chamber's corporate identity, aligned with organizational values and long-term vision.">الإشراف على تطوير الهوية المؤسسية بما ينسجم مع قيم الغرفة ورؤيتها طويلة المدى.</span></p></div></article><article class="work-card" data-group="tech"><div class="work-art art-tech"><span class="art-num">02</span><div class="art-glyph">✳</div><span class="art-label">ISSAM / SELECTED WORK</span></div><div class="work-body"><span class="work-type"><span data-en="IMMERSIVE TECHNOLOGY">الواقع الافتراضي</span></span><h3><span data-en="VR Sand Table · Ministry of Defence">الطاولة الرملية الافتراضية · وزارة الدفاع</span></h3><p><span data-en="Managed a specialized virtual-reality Sand Table project to meet client requirements.">إدارة مشروع متخصص لتوظيف الواقع الافتراضي في بناء تجربة تفاعلية وفق متطلبات العميل.</span></p></div></article><article class="work-card" data-group="impact"><div class="work-art art-impact"><span class="art-num">03</span><div class="art-glyph">✦</div><span class="art-label">ISSAM / SELECTED WORK</span></div><div class="work-body"><span class="work-type"><span data-en="MENTORSHIP">التدريب والتطوير</span></span><h3><span data-en="Mentored 480+ Omani Trainees">تدريب أكثر من 480 عُمانيًا</span></h3><p><span data-en="Delivered digital media training and mentorship at the Sas Center of VR.">تقديم التدريب والتوجيه في مجال الإعلام الرقمي بمركز ساس للواقع الافتراضي.</span></p></div></article><article class="work-card" data-group="tech"><div class="work-art art-tech"><span class="art-num">04</span><div class="art-glyph">✳</div><span class="art-label">ISSAM / SELECTED WORK</span></div><div class="work-body"><span class="work-type"><span data-en="3D SIMULATION">المحاكاة ثلاثية الأبعاد</span></span><h3><span data-en="Oil &amp; Gas Simulation · Occidental">التدريب في قطاع النفط والغاز</span></h3><p><span data-en="Supervised a 3D simulation project supporting gas-turbine operations training.">الإشراف على محاكاة تدريبية ثلاثية الأبعاد لعمليات تشغيل التوربينات الغازية.</span></p></div></article><article class="work-card" data-group="impact"><div class="work-art art-impact"><span class="art-num">05</span><div class="art-glyph">✦</div><span class="art-label">ISSAM / SELECTED WORK</span></div><div class="work-body"><span class="work-type"><span data-en="HEALTHCARE INNOVATION">الابتكار الصحي</span></span><h3><span data-en="Autism Detection Mobile Application">تطبيق للكشف عن التوحد</span></h3><p><span data-en="Contributed to an autism detection mobile app with Sultan Qaboos University COMHS.">المساهمة في تطوير تطبيق للكشف عن التوحد بالتعاون مع كلية الطب والعلوم الصحية بجامعة السلطان قابوس.</span></p></div></article><article class="work-card" data-group="brand"><div class="work-art art-brand"><span class="art-num">06</span><div class="art-glyph">◇</div><span class="art-label">ISSAM / SELECTED WORK</span></div><div class="work-body"><span class="work-type"><span data-en="DIGITAL COMMUNICATION">الاتصال الرقمي</span></span><h3><span data-en="Oman Arbitration Center">مركز عُمان للتحكيم التجاري</span></h3><p><span data-en="Oversaw social media strategy and proposed ideas to enhance the website experience.">الإشراف الاستراتيجي على التواصل الرقمي واقتراح تحسينات لتطوير الموقع الإلكتروني.</span></p></div></article></div><p class="project-note"><span data-en="Projects are summarized from the supplied CV; artwork is illustrative, not actual project imagery.">المشاريع ملخصة من السيرة الذاتية؛ العناصر البصرية توضيحية وليست صورًا فعلية للمشاريع.</span></p></div></section>
+<section class="section soft" id="expertise"><div class="container"><div class="kicker"><b>04</b> / EXPERTISE</div><h2><span data-en="Three connected strengths">ثلاثة مجالات تكمل بعضها</span></h2><p class="section-lead"><span data-en="Strategic frameworks, technology-led thinking and a creative foundation.">مزيج من الأدوات الاستراتيجية والتفكير التقني والخبرة الإبداعية.</span></p><div class="expertise-grid"><article class="skill"><span class="skill-num">01</span><h3><span data-en="Strategic Management &amp; Analysis">الإدارة الاستراتيجية والتحليل</span></h3><ul><li><span data-en="Strategic planning &amp; business strategy">التخطيط الاستراتيجي واستراتيجية الأعمال</span></li><li><span data-en="Corporate reporting &amp; financial modeling">التقارير المؤسسية والنمذجة المالية</span></li><li><span data-en="SWOT, PESTEL &amp; Porter analysis">تحليل SWOT وPESTEL وقوى بورتر</span></li><li><span data-en="Corporate governance &amp; risk management">الحوكمة وإدارة المخاطر</span></li></ul></article><article class="skill"><span class="skill-num">02</span><h3><span data-en="Digital Strategy &amp; Innovation">الاستراتيجية الرقمية والابتكار</span></h3><ul><li><span data-en="Digital transformation &amp; AI adoption">التحول الرقمي وتطبيقات الذكاء الاصطناعي</span></li><li><span data-en="Data-driven decision making">القرارات المبنية على البيانات</span></li><li><span data-en="Augmented &amp; virtual reality">الواقع المعزز والافتراضي</span></li><li><span data-en="Brand &amp; campaign strategy">استراتيجية الهوية والحملات</span></li></ul></article><article class="skill"><span class="skill-num">03</span><h3><span data-en="Creative &amp; Technical Foundation">الأساس الإبداعي والتقني</span></h3><ul><li><span data-en="Graphic design &amp; visual communication">التصميم الجرافيكي والاتصال البصري</span></li><li><span data-en="3D modeling &amp; rendering">النمذجة والإخراج ثلاثي الأبعاد</span></li><li><span data-en="Adobe Creative Suite">مجموعة برامج Adobe الإبداعية</span></li><li><span data-en="E-learning &amp; interactive media">التعلّم الإلكتروني والوسائط التفاعلية</span></li></ul></article></div></div></section>
+<section class="section white" id="education"><div class="container education-grid"><div><div class="kicker"><b>05</b> / EDUCATION</div><h2><span data-en="Academic background">المؤهلات العلمية</span></h2><div><div class="degree"><div><strong><span data-en="Master of Business Administration (MBA)">ماجستير إدارة الأعمال (MBA)</span></strong><small><span data-en="Majan University College">كلية مجان الجامعية</span></small></div><time>2023—2026</time></div><div class="degree"><div><strong><span data-en="Diploma in Database Management Systems">دبلوم إدارة قواعد البيانات</span></strong><small><span data-en="Middle East College">كلية الشرق الأوسط</span></small></div><time>2015—2018</time></div><div class="degree"><div><strong><span data-en="Diploma in Print Media Designing">دبلوم تصميم المطبوعات</span></strong><small><span data-en="Institute of Printing Technique">معهد تقنيات الطباعة</span></small></div><time>2007—2008</time></div></div></div><div><div class="kicker"><b>06</b> / DEVELOPMENT</div><h2><span data-en="Continuous learning">التطوير المهني المستمر</span></h2><p class="section-lead"><span data-en="Selected certifications and professional training from my CV.">شهادات وتدريبات مهنية مختارة من سيرتي الذاتية.</span></p><div class="cert-list" id="certList"><span class="cert"><span data-en="Financial Data Analysis">تحليل البيانات المالية</span></span><span class="cert"><span data-en="E-Commerce &amp; Digital Marketing">دبلوم مهني في التجارة الإلكترونية والتسويق الرقمي</span></span><span class="cert"><span data-en="Adobe Certified: Visual Communication">اعتماد Adobe في الاتصال البصري</span></span><span class="cert"><span data-en="Adobe Certified: Design &amp; Illustration">اعتماد Adobe في التصميم والرسم</span></span><span class="cert"><span data-en="Autodesk Certified: 3ds Max">اعتماد Autodesk في 3ds Max</span></span><span class="cert"><span data-en="EON Virtual Reality Training">تدريب EON في الواقع الافتراضي</span></span><span class="cert optional"><span data-en="Adobe Certified: Print &amp; Digital Publication">اعتماد Adobe في الطباعة والنشر الرقمي</span></span><span class="cert optional"><span data-en="Adobe Certified: Video Communication">اعتماد Adobe في اتصال الفيديو</span></span><span class="cert optional"><span data-en="Strategic Management &amp; Planning">الإدارة والتخطيط الاستراتيجي</span></span><span class="cert optional"><span data-en="Human Resource Management &amp; Development">إدارة الموارد البشرية وتطويرها</span></span><span class="cert optional"><span data-en="Business Analysis &amp; Customer Needs">تحليل الأعمال واحتياجات العملاء</span></span><span class="cert optional"><span data-en="Productivity Measurement &amp; Improvement">قياس الإنتاجية وتحسينها</span></span></div><button class="show-more" id="more" type="button" aria-expanded="false"><span data-en="Show more training">عرض المزيد من الدورات</span> ＋</button></div></div></section>
+<section class="contact" id="contact"><div class="container"><div class="contact-row"><div><div class="kicker">07 / GET IN TOUCH</div><h2><span data-en="Let's build something meaningful.">لنحوّل الأفكار إلى أثر.</span></h2><p><span data-en="Interested in strategic planning, digital innovation, visual communication or professional collaboration? I'd be glad to connect.">هل ترغب في التواصل حول التخطيط الاستراتيجي أو الابتكار الرقمي أو الاتصال البصري أو فرص التعاون المهني؟ يسعدني تواصلك.</span></p></div><div class="contact-buttons"><a href="mailto:issamalbalushi@gmail.com"><span data-en="Send an email">راسلني عبر البريد</span> ↗</a><a href="https://github.com/issamalbalushi" target="_blank" rel="noopener noreferrer"><span data-en="GitHub profile">حسابي على GitHub</span> ↗</a></div></div>
+<div class="footer"><span><span data-en="© 2026 Issam Ahmed Al Balushi. All rights reserved.">© 2026 عصام أحمد البلوشي. جميع الحقوق محفوظة.</span></span><small>STRATEGY · DIGITAL · DESIGN</small><a href="#top"><span data-en="Back to top ↑">العودة للأعلى ↑</span></a></div></div></section>
+</main><script>
+(function(){
+  const parts=[...document.querySelectorAll('[data-en]')];parts.forEach(x=>x.dataset.ar=x.textContent);
+  const l=document.getElementById('lang'), m=document.getElementById('hamburger'), nav=document.getElementById('navigation'), cert=document.getElementById('certList'),more=document.getElementById('more');
+  let lang='ar',expanded=false;
+  function apply(next){lang=next;document.documentElement.lang=next;document.documentElement.dir=next==='ar'?'rtl':'ltr';document.title=next==='ar'?'عصام أحمد البلوشي | الموقع الشخصي':'Issam Ahmed Al Balushi | Personal Website';parts.forEach(x=>x.textContent=next==='ar'?x.dataset.ar:x.dataset.en);l.textContent=next==='ar'?'EN':'ع';l.setAttribute('aria-label',next==='ar'?'Switch to English':'التبديل إلى العربية');if(expanded)more.querySelector('[data-en]').textContent=next==='ar'?'عرض عدد أقل من الدورات':'Show less training';try{localStorage.setItem('portfolioLanguage',next)}catch(e){}}
+  l.addEventListener('click',()=>apply(lang==='ar'?'en':'ar'));try{if(localStorage.getItem('portfolioLanguage')==='en')apply('en')}catch(e){}
+  m.addEventListener('click',()=>{const open=nav.classList.toggle('open');m.setAttribute('aria-expanded',String(open));m.textContent=open?'×':'☰'});nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');m.setAttribute('aria-expanded','false');m.textContent='☰'}));
+  document.querySelectorAll('.filter').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.filter').forEach(f=>f.setAttribute('aria-pressed',String(f===b)));document.querySelectorAll('.work-card').forEach(c=>c.hidden=b.dataset.filter!=='all'&&c.dataset.group!==b.dataset.filter)}));
+  more.addEventListener('click',()=>{expanded=!expanded;cert.classList.toggle('expanded',expanded);more.setAttribute('aria-expanded',String(expanded));more.querySelector('[data-en]').textContent=expanded?(lang==='ar'?'عرض عدد أقل من الدورات':'Show less training'):(lang==='ar'?'عرض المزيد من الدورات':'Show more training')});
+})();
+</script></body></html>
